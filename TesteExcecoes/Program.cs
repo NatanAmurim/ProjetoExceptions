@@ -46,14 +46,27 @@ namespace TesteExcecoes
                 conta.Sacar(-10);
             }
             catch (SaldoInsuficienteException e)
-            {
-
+            {                
                 Console.WriteLine($"Erro: {e.Message}");
             }
             catch (ArgumentException e) 
             {
-                Console.WriteLine($"Erro: {e.GetBaseException().Message}");
-                Console.WriteLine($"Argumento com problema: {e.ParamName}");
+                Console.WriteLine($"Erro: {e.Message}");
+                
+            }
+
+            try
+            {
+                Conta contaOrigem = new Conta(1, 1, 1);
+                Conta contaDestino = new Conta(1, 1, 1);
+
+                contaOrigem.Transferir(contaDestino, 10);
+            }
+            catch (OperacaoFinanceiraException e)
+            {
+                Console.WriteLine($"Erro: {e.Message}");
+                Console.WriteLine($"Stack: {e.StackTrace}");
+               
             }
 
             Console.ReadKey();

@@ -19,9 +19,8 @@ namespace TesteExcecoes
         /// <para>Teste</para> <paramref name="agencia"/>
         /// </summary> 
         /// <param name="numero">Indica o número da conta da conta e deve ser maior que zero.</param> 
-
-        // <param name="saldo">Indica o saldo da conta da conta e deve ser maior que zero.</param>  
-        // <param name="agencia"> Parameter description for s goes here.</param>
+        // <param name="saldo">Indica o saldo da conta e deve ser maior que zero.</param>  
+        // <param name="agencia"> Indica a agencia da conta e de ser maior que zero.</param>
         public Conta(int agencia, int numero, double saldo)
         {
             VerificacaoArgumentoNumericoNaoPodeSerMenorQueZero(agencia, nameof(agencia));
@@ -42,12 +41,29 @@ namespace TesteExcecoes
         public void Sacar(double valor) 
         {
             if (valor <= 0)
-                throw new ArgumentException(message: $"O valor de saque não pode ser menor ou igual a zero.", nameof(valor));
+                throw new ArgumentException(message: $"O valor de saque não pode ser menor ou igual a zero.");
 
-            if (Saldo < valor)
+            if (Saldo < valor) 
+            {                
                 throw new SaldoInsuficienteException(saldo: Saldo, valorSaque: valor);
+            }
+            
             
             Saldo -= valor;
+        }
+
+        public void Transferir(Conta contaDestino, double valor) 
+        {
+            try
+            {
+                Sacar(valor);
+            }
+            catch (SaldoInsuficienteException e)
+            {                
+                throw new OperacaoFinanceiraException("Operação inválida", e);
+            }
+            
+            contaDestino.Depositar(valor);
         }
 
         /// <summary>
