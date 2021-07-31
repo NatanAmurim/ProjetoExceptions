@@ -4,6 +4,9 @@ using System.Text;
 
 namespace TesteExcecoes.ExcecoesEspecificas
 {
+    /// <summary>
+    /// Esta exceção é lançada ao se tentar realizar uma operação que retire saldo da conta quando o mesmo não for suficiente.
+    /// </summary>
     public class SaldoInsuficienteException : OperacaoFinanceiraException
     {
         public double Saldo{get;}

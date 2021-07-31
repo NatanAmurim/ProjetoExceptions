@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BaseBanco</name>
+    </assembly>
+    <members>
+        <member name="M:BaseBanco.Conta.#ctor(System.Int32,System.Int32,System.Double)">
+             <summary>
+             Cria uma instância de conta.            
+             </summary>         
+             <param name="agencia">Define o valor da propriedade <see cref="P:BaseBanco.Conta.Agencia"></see> e deve ser maior que zero.</param> 
+             <param name="numero">Define o valor da propriedade <see cref="P:BaseBanco.Conta.Numero"></see> e deve ser maior que zero.</param> 
+             <param name="saldo">Define o valor da propriedade <see cref="P:BaseBanco.Conta.Saldo"></see> e deve ser maior que zero.</param> 
+            <exception cref="T:System.ArgumentException">Quando um ou mais parâmetros são menores que zero, uma exceção deste tipo é lançada.</exception>
+        </member>
+        <member name="M:BaseBanco.Conta.Depositar(System.Double)">
+            <remarks>Efetua a entrada de um valor na <see cref="T:BaseBanco.Conta"/>.</remarks>
+            <exception cref = "T:System.ArgumentException" ></exception>
+        </member>
+        <member name="M:BaseBanco.Conta.Sacar(System.Double)">
+            <remarks>Efetua a retirada de um valor da <see cref="T:BaseBanco.Conta"/>.</remarks>
+            <exception cref = "T:TesteExcecoes.ExcecoesEspecificas.SaldoInsuficienteException" ></exception>
+            <exception cref = "T:System.ArgumentException" ></exception>
+        </member>
+        <member name="M:BaseBanco.Conta.Transferir(BaseBanco.Conta,System.Double)">
+            <param name="contaDestino">Define a <see cref="T:BaseBanco.Conta"/> para qual será destinada a transferência.</param>
+            <param name="valor">Define o valor que será transferido.</param>
+            <exception cref = "T:System.NullReferenceException" ></exception>
+            <exception cref = "T:TesteExcecoes.ExcecoesEspecificas.OperacaoFinanceiraException" ></exception>
+        </member>
+        <member name="M:BaseBanco.Pessoa.TempoAteProximoAniversario">
+            <summary>
+            Retorna o tempo até o próximo aniversário.
+            </summary>
+            <returns>String com tempo até o próximo aniversário formatada.</returns>
+        </member>
+        <member name="M:BaseBanco.Pessoa.#ctor(System.String,System.String,System.DateTime)">
+             <summary>
+             Cria uma instância de <see cref="T:BaseBanco.Pessoa"/>.            
+             </summary>         
+             <param name="cpf">Define o valor da propriedade <see cref="P:BaseBanco.Pessoa.CPF"></see>. Não pode ser vazia.</param> 
+             <param name="nome">Define o valor da propriedade <see cref="P:BaseBanco.Pessoa.Nome"></see>. Não pode ser vazia.</param>         
+             <param name="dataNascimento">Define o valor da propriedade <see cref="P:BaseBanco.Pessoa.DataNascimento"></see>. Não pode ser menor que <see cref="F:BaseBanco.Pessoa._dataNascimentoMinima"/> .</param> 
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+    </members>
+</doc>

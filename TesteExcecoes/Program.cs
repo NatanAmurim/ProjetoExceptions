@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BaseBanco;
+using System;
 using TesteExcecoes.ExcecoesEspecificas;
 using TesteExcecoes.TesteDivideByZeroException;
 using TesteExcecoes.TesteNullPointer;
@@ -9,8 +10,21 @@ namespace TesteExcecoes
     {
         static void Main(string[] args)
         {
+
             try
             {
+                DateTime dataNascimento = new DateTime(1998, 08, 01);
+                Pessoa pessoa = new Pessoa("1", "Teste", dataNascimento);                
+                Console.WriteLine(pessoa.TempoAteProximoAniversario());
+            }
+            catch (ArgumentException e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
+
+            try
+            {                
                 DivisaoPorZero.TestarDivisao(1, 0);
             }
             catch (DivideByZeroException e)
@@ -18,6 +32,7 @@ namespace TesteExcecoes
 
                 Console.WriteLine($"Erro: {e.Message}");
             }
+            catch (ArgumentNullException) { }
 
 
             try
@@ -34,6 +49,7 @@ namespace TesteExcecoes
             {
                 Conta conta = new Conta(0,0,0);
                 conta.Sacar(10);
+                conta.Depositar(1);
             }
             catch (ArgumentException e)
             {
